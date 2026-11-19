@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permet de détecter un navigateur compatible Custom Tabs à partir d'Android 11. -->
+    <queries>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application>
+        <!--
+            Activité interne : ouvre l'onglet Custom Tabs et attend le retour.
+            L'activité qui reçoit le lien de retour (FrobillRedirectActivity) est à
+            déclarer dans le manifeste de l'application, avec son schéma d'URL :
+            voir le README.
+        -->
+        <activity
+            android:name="com.frobill.sdk.FrobillCheckoutActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+</manifest>
